@@ -1,47 +1,32 @@
-package com.account.accountapplication;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.account.accountapplication.login;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.account.accountapplication.login.Constant;
-import com.account.accountapplication.login.LoginContract;
-import com.account.accountapplication.login.LoginPresenterImpl;
-import com.account.accountapplication.login.registerActivity;
-import com.account.accountapplication.record.recordActivity;
+import com.account.accountapplication.R;
+import com.account.accountapplication.record.RecordActivity;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 
-
-public class MainActivity extends Activity implements LoginContract.LoginView, View.OnClickListener {
+public class LoginActivity extends Activity implements LoginContract.LoginView, View.OnClickListener {
 
     private ProgressBar progressBar;
     private EditText username;
     private EditText password;
     private LoginContract.LoginPresenter presenter;
-    private static MainActivity mainActivity;
-    public MainActivity() {
-        mainActivity = this;
+    private static LoginActivity loginActivity;
+    public LoginActivity() {
+        loginActivity = this;
     }
-    public static MainActivity getMainActivity() {
-        return mainActivity;
+    public static LoginActivity getLoginActivity() {
+        return loginActivity;
     }
 
     @Override
@@ -57,7 +42,7 @@ public class MainActivity extends Activity implements LoginContract.LoginView, V
             @Override
             public void onClick(View v) {
                 Intent intent  = new Intent();
-                intent.setClass(MainActivity.this, registerActivity.class);
+                intent.setClass(LoginActivity.this, registerActivity.class);
 
                 startActivity(intent);
             }
@@ -77,7 +62,7 @@ public class MainActivity extends Activity implements LoginContract.LoginView, V
 
 
         } else {
-            Toast.makeText(MainActivity.this, "账号、密码都不能为空！", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "账号、密码都不能为空！", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -107,6 +92,11 @@ public class MainActivity extends Activity implements LoginContract.LoginView, V
     @Override
     public void navigateToHome() {
         Toast.makeText(this, "login success", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent();
+        intent.setClass(LoginActivity.getLoginActivity(), RecordActivity.class);
+        LoginActivity.getLoginActivity().startActivity(intent);
+        finish();
     }
 
 

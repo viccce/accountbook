@@ -2,6 +2,7 @@ package com.account.accountapplication.login;
 
 import com.account.accountapplication.data.login.LoginModel;
 import com.account.accountapplication.data.login.LoginModelImpl;
+import com.account.accountapplication.data.my.User;
 
 
 /**
@@ -29,6 +30,14 @@ public class LoginPresenterImpl implements LoginContract.LoginPresenter, LoginMo
 
     }
 
+    @Override
+    public void createInfo(User user) {
+        if (loginView != null) {
+            loginView.showProgress();
+        }
+        loginModel.createInfo(user, this);
+    }
+
 
     @Override
     public void onDestroy() {
@@ -52,7 +61,13 @@ public class LoginPresenterImpl implements LoginContract.LoginPresenter, LoginMo
     }
 
     @Override
-    public void onSuccess() {
+    public void onRemoteSuccess(User result) {
+        //获得结果插入本地数据库中
+        this.createInfo(result);
+    }
+
+    @Override
+    public void onCreateInfoSuccess() {
         if (loginView != null) {
             loginView.navigateToHome();
         }

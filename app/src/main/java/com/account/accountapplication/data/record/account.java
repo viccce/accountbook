@@ -7,38 +7,35 @@ import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "account")
 public class account {
 
-    @PrimaryKey(autoGenerate = true)
-    @NonNull
-    @ColumnInfo(name="account_id")
-    private   Integer accountId;
+   private Long accountId;
 
-    @NonNull
-    @ColumnInfo(name="account_user")
-    private   Integer userId;
+   private String accountName;
 
-    @NonNull
-    public Integer getAccountId() {
+   private Long balance;
+
+    public Long getAccountId() {
         return accountId;
     }
 
-    public account(@NonNull Integer accountId, @NonNull Integer userId) {
-        this.accountId = accountId;
-        this.userId = userId;
-    }
-
-    @NonNull
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setAccountId(@NonNull Integer accountId) {
+    public void setAccountId(Long accountId) {
         this.accountId = accountId;
     }
 
-    public void setUserId(@NonNull Integer userId) {
-        this.userId = userId;
+    public String getAccountName() {
+        return accountName;
+    }
+
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
+
+    public Long getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Long balance) {
+        this.balance = balance;
     }
 }

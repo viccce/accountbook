@@ -21,11 +21,11 @@ public class RegisterPresenterImpl implements RegisterContract.RegisterPresenter
     }
 
     @Override
-    public void validateCredentials(String username, String password, String email) {
+    public void validateCredentials(String username, String password, String email, String mobile) {
         if (registerView != null) {
             registerView.showProgress();
         }
-        registerModel.register(username, password,email,this);
+        registerModel.register(username, password,email, mobile, this);
     }
 
     @Override

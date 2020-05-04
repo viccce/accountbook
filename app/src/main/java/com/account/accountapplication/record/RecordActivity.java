@@ -3,9 +3,9 @@ package com.account.accountapplication.record;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -13,15 +13,18 @@ import android.view.View;
 
 import com.account.accountapplication.R;
 import com.account.accountapplication.chat.chatFragment;
+import com.account.accountapplication.edituser.EditUserActivity;
+import com.account.accountapplication.login.LoginActivity;
 import com.account.accountapplication.message.messageFragment;
-import com.account.accountapplication.my.myFragment;
+import com.account.accountapplication.my.MyFragment;
 import com.account.accountapplication.record.addRecord.addRecordFragment;
 import com.next.easynavigation.view.EasyNavigationBar;
+import com.xuexiang.xui.XUI;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class recordActivity extends AppCompatActivity {
+public class RecordActivity extends AppCompatActivity {
 
     private EasyNavigationBar navigationBar;
 
@@ -42,14 +45,13 @@ public class recordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record);
 
-
         navigationBar = findViewById(R.id.navigationBar);
 
         fragments.add(new chatFragment());
         fragments.add(new RecordFragment());
         fragments.add(new addRecordFragment());
         fragments.add(new messageFragment());
-        fragments.add(new myFragment());
+        fragments.add(new MyFragment());
         //      .fragmentList(fragments)
 
 //         fragmentManager = getSupportFragmentManager();
@@ -97,5 +99,18 @@ public class recordActivity extends AppCompatActivity {
                 .mode(EasyNavigationBar.MODE_ADD)
                 .build();
 
+    }
+
+    public void logout(){
+        Intent intent = new Intent();
+        intent.setClass(this, LoginActivity.class);
+        this.startActivity(intent);
+        finish();
+    }
+
+    public void editUserInfo() {
+        Intent intent = new Intent();
+        intent.setClass(this, EditUserActivity.class);
+        this.startActivity(intent);
     }
 }

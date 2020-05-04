@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="250dp"
@@ -6,11 +7,10 @@
     android:gravity="center"
     android:orientation="vertical"
     android:layout_marginTop="16dp"
-    tools:context=".login.LoginActivity"
     >
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/edit_user_nickname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -18,14 +18,34 @@
         android:drawableLeft="@drawable/ic_action_person"
         android:drawablePadding="8dp"
         />
+
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/edit_user_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:hint="@string/password"
-        android:inputType="textPassword"
-        android:drawableLeft="@drawable/ic_action_key"
+        android:hint="@string/email"
+        android:drawableLeft="@drawable/ic_action_email"
+        android:drawablePadding="8dp"
+        />
+
+    <EditText
+        android:id="@+id/edit_user_mobile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:hint="@string/mobile"
+        android:drawableLeft="@drawable/ic_action_email"
+        android:drawablePadding="8dp"
+        />
+
+    <EditText
+        android:id="@+id/edit_user_remark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:hint="@string/remark"
+        android:drawableLeft="@drawable/ic_action_email"
         android:drawablePadding="8dp"
         />
 
@@ -36,26 +56,14 @@
         android:orientation="vertical"
         android:layout_marginTop="32dp">
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/log_in" />
 
         <Button
-            android:id="@+id/register_button"
+            android:id="@+id/edit_user_save_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/register"
+            android:text="@string/save"
             />
     </LinearLayout>
-
-    <ProgressBar android:id="@+id/progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:visibility="gone">
-    </ProgressBar>
 
 
 

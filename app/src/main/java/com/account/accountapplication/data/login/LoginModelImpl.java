@@ -1,15 +1,18 @@
 package com.account.accountapplication.data.login;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.account.accountapplication.MainActivity;
-import com.account.accountapplication.login.Constant;
-import com.account.accountapplication.record.recordActivity;
+import com.account.accountapplication.data.my.User;
+import com.account.accountapplication.data.my.UserRepository;
+import com.account.accountapplication.login.LoginActivity;
+import com.account.accountapplication.utils.Constant;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,25 +28,31 @@ import java.net.URL;
  */
 public class LoginModelImpl implements LoginModel {
 
+    private UserRepository userRepository;
+
+    public LoginModelImpl() {
+        this.userRepository = UserRepository.getInstance();
+    }
 
     @Override
     public void login(final String username, final String password, final OnLoginFinishedListener listener) {
 
 
         new Handler().post(new Runnable() {
-            @Override public void run() {
+            @Override
+            public void run() {
                 boolean error = false;
-                if (TextUtils.isEmpty(username)){
+                if (TextUtils.isEmpty(username)) {
                     listener.onUsernameError();//model层里面回调listener
                     error = true;
                 }
-                if (TextUtils.isEmpty(password)){
+                if (TextUtils.isEmpty(password)) {
                     listener.onPasswordError();
                     error = true;
                 }
-                if (!error){
-                    String loginUrlStr = Constant.URL_Login + "?name=" + username + "&password=" + password;
-                    new MyAsyncTask().execute(loginUrlStr);
+                if (!error) {
+                    String loginUrlStr = Constant.URL_Login + "/mobile=" + username + "&password=" + password;
+                    new LoginAsyncTask(listener).execute(loginUrlStr);
 
                 }
             }
@@ -51,6 +60,35 @@ public class LoginModelImpl implements LoginModel {
 
     }
 
+    @Override
+    public void createInfo(final User user, final OnLoginFinishedListener listener) {
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                new InsertUserAsyncTask(userRepository, listener).execute(user);
+            }
+        });
+    }
+
+    static class InsertUserAsyncTask extends AsyncTask<User,Void,Void> {
+        private UserRepository userRepository;
+        private OnLoginFinishedListener listener;
+        public InsertUserAsyncTask(UserRepository userRepository, OnLoginFinishedListener listener) {
+            this.userRepository = userRepository;
+            this.listener = listener;
+        }
+        @Override
+        protected Void doInBackground(User... user) {
+            userRepository.delete();
+            userRepository.create(user[0]);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            listener.onCreateInfoSuccess();
+        }
+    }
 
     /**
      * AsyncTask类的三个泛型参数：
@@ -58,7 +96,13 @@ public class LoginModelImpl implements LoginModel {
      * （2）后台任务执行过程中，如果需要在UI上先是当前任务进度，则使用这里指定的泛型作为进度单位
      * （3）任务执行完毕后，如果需要对结果进行返回，则这里指定返回的数据类型
      */
-    public static class MyAsyncTask extends AsyncTask<String, Integer, String> {
+    public static class LoginAsyncTask extends AsyncTask<String, Integer, String> {
+
+        private OnLoginFinishedListener listener;
+
+        public LoginAsyncTask(OnLoginFinishedListener listener) {
+            this.listener = listener;
+        }
 
         @Override
         protected void onPreExecute() {
@@ -103,18 +147,24 @@ public class LoginModelImpl implements LoginModel {
 
         /**
          * 运行在UI线程中，所以可以直接操作UI元素
+         *
          * @param s
          */
         @Override
         protected void onPostExecute(String s) {
             Log.w("WangJ", "task onPostExecute()");
-            if(s.equals("code:200")){
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.getMainActivity(), recordActivity.class);
-                MainActivity.getMainActivity().startActivity(intent);
-            }
-            if(s.equals("code:100")){
-                Toast.makeText(MainActivity.getMainActivity(), "账号或密码输入错误！", Toast.LENGTH_SHORT).show();
+            try {
+                JsonObject result = new JsonParser().parse(s).getAsJsonObject();
+                String resultCode = result.get("resultCode").getAsString();
+                if ("0".equals(resultCode)) {
+                    Gson gson = new Gson();
+                    User user = gson.fromJson(result.get("result"), User.class);
+                    listener.onRemoteSuccess(user);
+                }else {
+                    Toast.makeText(LoginActivity.getLoginActivity(), result.get("message").getAsString(), Toast.LENGTH_SHORT).show();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
         }

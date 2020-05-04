@@ -1,5 +1,7 @@
 package com.account.accountapplication.login;
 
+import com.account.accountapplication.data.my.User;
+
 public interface LoginContract {
 
     public interface LoginView{
@@ -14,11 +16,11 @@ public interface LoginContract {
         void navigateToHome();
     }
 
-    public interface  LoginPresenter{
+    public interface LoginPresenter{
         void validateCredentials(String username, String password);
 
+        void createInfo(User user);
+
         void onDestroy();
-
-
     }
 }

@@ -39,11 +39,11 @@
         />
 
     <EditText
-        android:id="@+id/date"
+        android:id="@+id/mobile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:hint="@string/email"
+        android:hint="@string/mobile"
         android:drawableLeft="@drawable/ic_action_email"
         android:drawablePadding="8dp"
         />

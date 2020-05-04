@@ -1,7 +1,5 @@
 package com.account.accountapplication.record;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,13 +9,10 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Database;
 
 import com.account.accountapplication.R;
 import com.account.accountapplication.data.record.account;
 import com.account.accountapplication.data.record.dao.InnerJoinResult;
-import com.account.accountapplication.data.record.dataBase.recordDatabase;
-import com.account.accountapplication.data.record.recType;
 import com.account.accountapplication.data.record.record;
 import com.account.accountapplication.databinding.CellNormalBinding;
 import com.account.accountapplication.databinding.RecordItemBinding;

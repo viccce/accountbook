@@ -10,7 +10,6 @@ import androidx.lifecycle.SavedStateViewModelFactory;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Database;
 
 
 import android.view.LayoutInflater;
@@ -19,22 +18,19 @@ import android.view.ViewGroup;
 
 import com.account.accountapplication.R;
 import com.account.accountapplication.data.record.dao.InnerJoinResult;
-import com.account.accountapplication.data.record.dao.recordDao;
-import com.account.accountapplication.data.record.dataBase.recordDatabase;
 import com.account.accountapplication.data.record.model.RecordModel;
 import com.account.accountapplication.data.record.record;
 import com.account.accountapplication.databinding.FragmentRecordBinding;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RecordFragment extends Fragment {
 
 
-    RecordModel model;
-    recordAdapter myAdapteritem, myAdapternormal;
+    private RecordModel model;
+    private recordAdapter myAdapteritem, myAdapternormal;
     //DatabindingBinding 由框架编译时生成，负责通知界面同步更新(命名方式：xml文件名 + Binding)；
-    FragmentRecordBinding binding;
+    private FragmentRecordBinding binding;
 
 
     @Override

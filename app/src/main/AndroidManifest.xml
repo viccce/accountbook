@@ -15,15 +15,18 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".login.registerActivity"></activity>
-        <activity android:name=".record.recordActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".login.registerActivity" />
+        <activity android:name=".record.RecordActivity" />
+        <activity android:name=".login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".edituser.EditUserActivity" />
+
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
     </application>
 
 </manifest>

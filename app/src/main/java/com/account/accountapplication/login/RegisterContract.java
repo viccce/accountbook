@@ -17,7 +17,7 @@ public interface RegisterContract {
     }
 
     public interface  RegisterPresenter{
-        void validateCredentials(String username, String password,String email);
+        void validateCredentials(String username, String password,String email, String mobile);
 
         void onDestroy();
     }

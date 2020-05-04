@@ -7,7 +7,6 @@ import androidx.lifecycle.LiveData;
 
 import com.account.accountapplication.data.record.dao.InnerJoinResult;
 import com.account.accountapplication.data.record.dao.recordDao;
-import com.account.accountapplication.data.record.dataBase.recordDatabase;
 import com.account.accountapplication.data.record.record;
 
 import java.util.List;
