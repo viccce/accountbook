@@ -10,6 +10,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class VolleyUtil {
@@ -66,7 +67,13 @@ public class VolleyUtil {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                return params;
+                if(params.isEmpty()){
+                    Map<String, String> head = new HashMap<>();
+                    head.put("content-type", "application/json;charset=utf-8");
+                    return head;
+                }else{
+                    return params;
+                }
             }
         };
         requestQueue.add(stringRequest);

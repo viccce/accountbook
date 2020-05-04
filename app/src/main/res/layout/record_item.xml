@@ -4,9 +4,6 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
 
 <data>
 
-    <variable
-        name="data"
-        type="com.account.accountapplication.data.record.model.RecordModel" />
 </data>
 <!--android:clickable="true" 实现元素的可点击-->
 <LinearLayout

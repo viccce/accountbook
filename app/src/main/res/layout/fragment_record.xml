@@ -7,7 +7,7 @@
     <data>
         <variable
             name="data"
-            type="com.account.accountapplication.data.record.model.RecordModel" />
+            type="com.account.accountapplication.data.record.Account" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +18,7 @@
     <!-- TODO: Update blank fragment layout -->
     <!-- 因为RecyclerView并不是内置在系统SDK当中的，所以需要把完整的包路径写出来 -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview"
+        android:id="@+id/account_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />

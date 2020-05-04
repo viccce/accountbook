@@ -51,7 +51,7 @@ public class LoginModelImpl implements LoginModel {
                     error = true;
                 }
                 if (!error) {
-                    String loginUrlStr = Constant.URL_Login + "/mobile=" + username + "&password=" + password;
+                    String loginUrlStr = Constant.URL_LOGIN + "/mobile=" + username + "&password=" + password;
                     new LoginAsyncTask(listener).execute(loginUrlStr);
 
                 }

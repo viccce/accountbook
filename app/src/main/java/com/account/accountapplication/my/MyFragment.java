@@ -64,7 +64,7 @@ public class MyFragment extends Fragment implements MyContract.MyView{
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RecordActivity recordActivity = (RecordActivity) getActivity();
+                RecordActivity recordActivity = RecordActivity.getInstance();
                 if(recordActivity != null){
                     recordActivity.logout();
 

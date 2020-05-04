@@ -7,7 +7,7 @@ import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-public class account {
+public class Account {
 
    private Long accountId;
 

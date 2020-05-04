@@ -3,6 +3,7 @@ package com.account.accountapplication.login;
 import com.account.accountapplication.data.login.LoginModel;
 import com.account.accountapplication.data.login.LoginModelImpl;
 import com.account.accountapplication.data.my.User;
+import com.account.accountapplication.utils.DataManager;
 
 
 /**
@@ -14,10 +15,12 @@ import com.account.accountapplication.data.my.User;
 public class LoginPresenterImpl implements LoginContract.LoginPresenter, LoginModel.OnLoginFinishedListener {
     private LoginContract.LoginView loginView;
     private LoginModel loginModel;
+    private DataManager dataManager;
 
     public LoginPresenterImpl(LoginContract.LoginView loginView) {
         this.loginView = loginView;
         this.loginModel = new LoginModelImpl();
+        this.dataManager = DataManager.getInstance();
     }
 
     @Override
@@ -62,6 +65,8 @@ public class LoginPresenterImpl implements LoginContract.LoginPresenter, LoginMo
 
     @Override
     public void onRemoteSuccess(User result) {
+        //缓存userId
+        dataManager.setUserId(result.getId());
         //获得结果插入本地数据库中
         this.createInfo(result);
     }

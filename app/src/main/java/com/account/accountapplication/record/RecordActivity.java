@@ -26,6 +26,16 @@ import java.util.List;
 
 public class RecordActivity extends AppCompatActivity {
 
+    private static RecordActivity recordActivity;
+
+    public RecordActivity(){
+        recordActivity = this;
+    }
+
+    public static RecordActivity getInstance(){
+        return recordActivity;
+    }
+
     private EasyNavigationBar navigationBar;
 
     FragmentManager fragmentManager;
@@ -52,16 +62,6 @@ public class RecordActivity extends AppCompatActivity {
         fragments.add(new addRecordFragment());
         fragments.add(new messageFragment());
         fragments.add(new MyFragment());
-        //      .fragmentList(fragments)
-
-//         fragmentManager = getSupportFragmentManager();
-//        FragmentTransaction transaction = fragmentManager.beginTransaction();
-//        transaction.add(new chatFragment(),"chat");
-//        transaction.add(new RecordFragment(),"record");
-//        transaction.add(new addRecordFragment(),"addRecord");
-//        transaction.add(new messageFragment(),"message");
-//        transaction.add(new myFragment(),"my");
-//        transaction.commit();
 
 
         navigationBar.titleItems(tabText)
