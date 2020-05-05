@@ -1,6 +1,7 @@
 package com.account.accountapplication.record;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.account.accountapplication.R;
+import com.account.accountapplication.account.AccountActivity;
 import com.account.accountapplication.data.record.Account;
+import com.xuexiang.xui.widget.dialog.materialdialog.MaterialDialog;
 
 import java.util.List;
 
@@ -43,8 +46,26 @@ public class RecordFragment extends Fragment implements RecordContract.RecordVie
         RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.account_recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
-        AccountAdapter adapter = new AccountAdapter(list);
+        AccountAdapter adapter = new AccountAdapter(list, this);
         recyclerView.setAdapter(adapter);
+    }
+
+    public void showAccountOptions(Account account){
+
+        new MaterialDialog.Builder(getContext())
+                .title(R.string.tip_options)
+                .items(R.array.menu_values)
+                .itemsCallback(new MaterialDialog.ListCallback() {
+                    @Override
+                    public void onSelection(MaterialDialog dialog, View itemView, int position, CharSequence text) {
+                        Toast.makeText(getContext(), String.valueOf(position), Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .show();
+
+//        Intent intent = new Intent(getActivity().getApplicationContext(), AccountActivity.class);
+//        intent.putExtra("accountId", account.getAccountId());
+//        startActivity(intent);
     }
 
     @Override

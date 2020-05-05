@@ -18,6 +18,8 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.ViewHold
 
     private List<Account> accountList;
 
+    private RecordFragment recordFragment;
+
     static class ViewHolder extends RecyclerView.ViewHolder{
         TextView accountName;
         TextView accountBalance;
@@ -29,8 +31,9 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.ViewHold
         }
     }
 
-    public AccountAdapter(List<Account> list){
+    public AccountAdapter(List<Account> list, RecordFragment recordFragment){
         this.accountList = list;
+        this.recordFragment = recordFragment;
     }
 
     @NonNull
@@ -43,7 +46,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.ViewHold
             public void onClick(View v) {
                 int position = viewHolder.getAdapterPosition();
                 Account account = accountList.get(position);
-
+                recordFragment.showAccountOptions(account);
             }
         });
         return viewHolder;

@@ -17,9 +17,7 @@ import com.account.accountapplication.edituser.EditUserActivity;
 import com.account.accountapplication.login.LoginActivity;
 import com.account.accountapplication.message.messageFragment;
 import com.account.accountapplication.my.MyFragment;
-import com.account.accountapplication.record.addRecord.addRecordFragment;
 import com.next.easynavigation.view.EasyNavigationBar;
-import com.xuexiang.xui.XUI;
 
 import java.util.ArrayList;
 import java.util.List;

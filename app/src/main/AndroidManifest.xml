@@ -25,6 +25,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".edituser.EditUserActivity" />
+        <activity android:name=".account.AccountActivity" />
 
         <uses-library android:name="org.apache.http.legacy" android:required="false" />
     </application>
