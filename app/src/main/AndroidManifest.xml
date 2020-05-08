@@ -7,14 +7,14 @@
 
 
     <application
-        android:allowBackup="true"
         android:name=".MyApp"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:fullBackupContent="@xml/backup_descriptor">
         <activity android:name=".login.registerActivity" />
         <activity android:name=".record.RecordActivity" />
         <activity android:name=".login.LoginActivity">
@@ -26,6 +26,7 @@
         </activity>
         <activity android:name=".edituser.EditUserActivity" />
         <activity android:name=".account.AccountActivity" />
+        <activity android:name=".addaccount.AddAccountActivity" />
 
         <uses-library android:name="org.apache.http.legacy" android:required="false" />
     </application>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <com.xuexiang.xui.widget.actionbar.TitleBar
+        android:id="@+id/add_account_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/design_default_color_primary"
+        app:tb_dividerColor="@color/design_default_color_primary"
+        app:tb_useThemeColor="false"
+        app:tb_leftText="回退"
+        app:tb_actionPadding="20dp"
+        app:tb_titleText="@string/create_account" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/account_name" />
+
+            <EditText
+                android:id="@+id/account_name_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:hint="@string/please_input_account_name" />
+
+        </LinearLayout>
+
+        <com.xuexiang.xui.widget.button.roundbutton.RoundButton
+            android:id="@+id/account_save_button"
+            style="@style/RoundButton.Auto"
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="20dp"
+            android:layout_marginBottom="0dp"
+            android:text="@string/save"
+            android:textColor="@color/xui_default_round_btn_white_text"
+            app:rb_backgroundColor="@color/design_default_color_primary"
+            app:rb_borderColor="@color/design_default_color_primary"
+            tools:ignore="PrivateResource" />
+
+    </RelativeLayout>
+
+</LinearLayout>

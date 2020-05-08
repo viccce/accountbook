@@ -30,8 +30,18 @@ public class RecordPresenterImpl implements RecordContract.RecordPresenter, Acco
     }
 
     @Override
+    public void deleteAccount(Account account) {
+        accountModel.deleteAccount(account, this);
+    }
+
+    @Override
     public void getAccountInfoListSuccess(List<Account> list) {
         recordView.showAccountInfoList(list);
+    }
+
+    @Override
+    public void deleteAccountSuccess() {
+        this.getAccountInfoList();
     }
 
     @Override

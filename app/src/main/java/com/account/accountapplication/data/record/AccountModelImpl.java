@@ -62,4 +62,35 @@ public class AccountModelImpl implements AccountModel {
             }
         });
     }
+
+    @Override
+    public void deleteAccount(final Account account, final FinishListener listener) {
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                String url = Constant.URL_ACCOUNT_DELETE;
+                final Gson gson = new Gson();
+                HashMap<String, Long> param = new HashMap<>();
+                param.put("accountId", account.getAccountId());
+                String body = gson.toJson(param);
+                volleyUtil.httpPostRequest(url, new HashMap<String, String>(), body, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        JsonObject res = new JsonParser().parse(response).getAsJsonObject();
+                        String resultCode = res.get("resultCode").getAsString();
+                        if("0".equals(resultCode)){
+                            listener.deleteAccountSuccess();
+                        }else{
+                            listener.onError(res.get("message").toString());
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        listener.onError(error.getMessage());
+                    }
+                });
+            }
+        });
+    }
 }

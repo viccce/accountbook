@@ -2,7 +2,7 @@
 <resources>
     <string-array name="menu_values">
         <item>添加</item>
-        <item>修改</item>
         <item>详情</item>
+        <item>删除</item>
     </string-array>
 </resources>

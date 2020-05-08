@@ -16,5 +16,7 @@ public interface RecordContract {
     public interface RecordPresenter {
 
         void getAccountInfoList();
+
+        void deleteAccount(Account account);
     }
 }

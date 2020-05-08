@@ -7,7 +7,7 @@ import com.account.accountapplication.R;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class AccountActivity extends AppCompatActivity {
+public class AccountActivity extends AppCompatActivity implements AccountContract.AccountView {
 
     public static AccountActivity accountActivity;
 

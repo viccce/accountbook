@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.account.accountapplication.R;
 import com.account.accountapplication.chat.chatFragment;
@@ -110,5 +111,14 @@ public class RecordActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setClass(this, EditUserActivity.class);
         this.startActivity(intent);
+    }
+
+    public void refreshRecord() {
+        if(fragments != null && fragments.size() > 2){
+            RecordFragment recordFragment = (RecordFragment) fragments.get(1);
+            if(recordFragment != null){
+                recordFragment.getAccountInfoList();
+            }
+        }
     }
 }

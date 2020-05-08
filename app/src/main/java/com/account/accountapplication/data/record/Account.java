@@ -9,11 +9,17 @@ import androidx.room.PrimaryKey;
 
 public class Account {
 
-   private Long accountId;
+    private Long accountId;
 
-   private String accountName;
+    private String accountName;
 
-   private Long balance;
+    private Long balance;
+
+    private Long timestamp;
+
+    private Long userId;
+
+    private String actionType;
 
     public Long getAccountId() {
         return accountId;
@@ -37,5 +43,29 @@ public class Account {
 
     public void setBalance(Long balance) {
         this.balance = balance;
+    }
+
+    public Long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getActionType() {
+        return actionType;
+    }
+
+    public void setActionType(String actionType) {
+        this.actionType = actionType;
     }
 }
