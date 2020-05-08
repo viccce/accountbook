@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="menu_values">
-        <item>添加</item>
         <item>详情</item>
         <item>删除</item>
     </string-array>

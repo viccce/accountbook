@@ -70,6 +70,7 @@ public class VolleyUtil {
                 if(params.isEmpty()){
                     Map<String, String> head = new HashMap<>();
                     head.put("content-type", "application/json;charset=utf-8");
+                    head.put("Accept", "application/json;charset=UTF-8");
                     return head;
                 }else{
                     return params;

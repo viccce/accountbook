@@ -41,6 +41,13 @@ public class AddAccountActivity extends AppCompatActivity implements AddAccountC
         accountNameText = (EditText) findViewById(R.id.account_name_input);
         RoundButton saveButton = (RoundButton) findViewById(R.id.account_save_button);
 
+        titleBar.setLeftClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

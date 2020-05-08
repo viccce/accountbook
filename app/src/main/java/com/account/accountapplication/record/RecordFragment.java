@@ -71,18 +71,13 @@ public class RecordFragment extends Fragment implements RecordContract.RecordVie
                 .itemsCallback(new MaterialDialog.ListCallback() {
                     @Override
                     public void onSelection(MaterialDialog dialog, View itemView, int position, CharSequence text) {
-                        
-                        if(position == 0){//修改
+
+                        if(position == 0){//详情
                             Intent intent = new Intent(getActivity(), AccountActivity.class);
                             intent.putExtra("accountId", account.getAccountId());
                             startActivity(intent);
                         }
-                        if(position == 1){//详情
-                            Intent intent = new Intent(getActivity(), AccountActivity.class);
-                            intent.putExtra("accountId", account.getAccountId());
-                            startActivity(intent);
-                        }
-                        if(position == 2){//删除
+                        if(position == 1){//删除
                             new MaterialDialog.Builder(getContext())
                                     .content(R.string.confirm_delete)
                                     .positiveText(R.string.yes)
@@ -99,9 +94,6 @@ public class RecordFragment extends Fragment implements RecordContract.RecordVie
                 })
                 .show();
 
-//        Intent intent = new Intent(getActivity().getApplicationContext(), AccountActivity.class);
-//        intent.putExtra("accountId", account.getAccountId());
-//        startActivity(intent);
     }
 
     @Override

@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.xuexiang.xui.widget.actionbar.TitleBar
+        android:id="@+id/account_detail_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/design_default_color_primary"
+        app:tb_actionPadding="20dp"
+        app:tb_dividerColor="@color/design_default_color_primary"
+        app:tb_leftText="回退"
+        app:tb_titleText="@string/account_detail"
+        app:tb_useThemeColor="false" />
 
     <TextView
-        android:text="123465"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints" />
+        android:text="123456"
+        app:layout_constraintTop_toBottomOf="@+id/account_detail_title" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -49,7 +49,7 @@
   <component name="DBNavigator.Project.MethodExecutionManager">
     <method-browser />
     <execution-history>
-      <group-entries value="true" />
+      <group-entries value="false" />
       <execution-inputs />
     </execution-history>
     <argument-values-cache />

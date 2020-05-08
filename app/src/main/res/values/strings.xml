@@ -27,7 +27,9 @@
     <string name="account">账目</string>
     <string name="add">添加</string>
     <string name="create_account">新建账目</string>
+    <string name="account_detail">账目明细</string>
     <string name="account_name">账目名称</string>
     <string name="please_input_account_name">请输入账目名称</string>
+    <string name="my">我的</string>
 
 </resources>

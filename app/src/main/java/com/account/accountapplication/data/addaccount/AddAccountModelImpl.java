@@ -28,7 +28,7 @@ public class AddAccountModelImpl implements AddAccountModel {
             public void run() {
                 String url = Constant.URL_ACCOUNT_SAVE;
                 Gson gson = new Gson();
-                String body = gson.toJson(account);
+                String body = gson.toJson(account, Account.class);
                 volleyUtil.httpPostRequest(url, new HashMap<String, String>(), body, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
