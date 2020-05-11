@@ -26,8 +26,8 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.ViewHold
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            accountName = (TextView) itemView.findViewById(R.id.account_name);
-            accountBalance = (TextView) itemView.findViewById(R.id.account_balance);
+            accountName = itemView.findViewById(R.id.account_name);
+            accountBalance = itemView.findViewById(R.id.account_balance);
         }
     }
 

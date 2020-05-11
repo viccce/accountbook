@@ -9,5 +9,5 @@ public class Constant {
     public static final String URL_ACCOUNT_INFO_LIST = BASE_URL + "/account/list";
     public static final String URL_ACCOUNT_DELETE = BASE_URL + "/account/delete";
     public static final String URL_ACCOUNT_SAVE = BASE_URL + "/account/save";
-
+    public static final String URL_ACCOUNT_DETAIL = BASE_URL + "/account/detail";
 }
