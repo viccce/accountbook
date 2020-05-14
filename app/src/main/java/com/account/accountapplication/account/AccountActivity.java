@@ -6,7 +6,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.account.accountapplication.R;
+import com.account.accountapplication.addaccountline.AddAccountLineActivity;
 import com.account.accountapplication.data.record.AccountLine;
+import com.account.accountapplication.record.RecordActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.xuexiang.xui.widget.actionbar.TitleBar;
 
@@ -23,11 +25,11 @@ public class AccountActivity extends AppCompatActivity implements AccountContrac
 
     public static AccountActivity accountActivity;
 
-    public AccountActivity(){
+    public AccountActivity() {
         accountActivity = this;
     }
 
-    public static AccountActivity getInstance(){
+    public static AccountActivity getInstance() {
         return accountActivity;
     }
 
@@ -36,19 +38,25 @@ public class AccountActivity extends AppCompatActivity implements AccountContrac
     private RecyclerView recyclerView;
 
     @Override
+    protected void onDestroy() {
+        RecordActivity.getInstance().refreshRecord();
+        super.onDestroy();
+    }
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.account_activity);
-        Intent i = getIntent();
         accountPresenter = new AccountPresenterImpl(this);
 
+        Intent i = getIntent();
         Long accountId = null;
+        accountId = i.getLongExtra("accountId", -1L);
+        final String accountName = i.getStringExtra("accountName");
 
-            accountId = i.getLongExtra("accountId", -1L);
-
-        if(accountId == -1L){
+        if (accountId == -1L) {
             finish();
-        }else{
+        } else {
             recyclerView = findViewById(R.id.account_line_recycler_view);
             TitleBar titleBar = findViewById(R.id.account_line_title);
             titleBar.setLeftClickListener(new View.OnClickListener() {
@@ -58,10 +66,15 @@ public class AccountActivity extends AppCompatActivity implements AccountContrac
                 }
             });
             FloatingActionButton addButton = findViewById(R.id.add_account_line);
+            final Long finalAccountId = accountId;
             addButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //TODO： 新增明细
+                    Intent intent = new Intent();
+                    intent.putExtra("accountId", finalAccountId);
+                    intent.putExtra("accountName", accountName);
+                    intent.setClass(AccountActivity.this, AddAccountLineActivity.class);
+                    startActivity(intent);
                 }
             });
             this.getAccountLine(accountId);
@@ -70,7 +83,7 @@ public class AccountActivity extends AppCompatActivity implements AccountContrac
 
     }
 
-    public void getAccountLine(Long accountId){
+    public void getAccountLine(Long accountId) {
         accountPresenter.getAccountLine(accountId);
     }
 

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/xui_config_color_gray_9"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.xuexiang.xui.widget.actionbar.TitleBar
+            android:id="@+id/account_user_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/design_default_color_primary"
+            app:tb_actionPadding="20dp"
+            app:tb_dividerColor="@color/design_default_color_primary"
+            app:tb_leftText="回退"
+            app:tb_titleText="@string/account_user"
+            app:tb_useThemeColor="false" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/account_user_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_account_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_margin="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_action_add"
+        app:backgroundTint="@color/design_default_color_primary"/>
+
+
+</RelativeLayout>

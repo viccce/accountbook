@@ -29,6 +29,8 @@ public class User {
 
     private String actionType;
 
+    private Long accountId;
+
     public Long getId() {
         return id;
     }
@@ -91,5 +93,13 @@ public class User {
 
     public void setActionType(String actionType) {
         this.actionType = actionType;
+    }
+
+    public Long getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
 }

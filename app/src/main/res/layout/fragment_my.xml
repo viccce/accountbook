@@ -143,7 +143,7 @@
                 style="@style/RoundButton.Auto"
                 android:id="@+id/logout_button"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 app:rb_backgroundColor="@color/xui_config_color_red"
                 app:rb_borderColor="@color/xui_config_color_red"
                 android:textColor="@color/xui_config_color_white"

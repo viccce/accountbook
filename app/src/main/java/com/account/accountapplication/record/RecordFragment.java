@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.account.accountapplication.R;
 import com.account.accountapplication.account.AccountActivity;
+import com.account.accountapplication.accountuser.AccountUserActivity;
 import com.account.accountapplication.addaccount.AddAccountActivity;
 import com.account.accountapplication.data.record.Account;
 import com.xuexiang.xui.widget.dialog.materialdialog.DialogAction;
@@ -75,6 +76,7 @@ public class RecordFragment extends Fragment implements RecordContract.RecordVie
                         if(position == 0){//详情
                             Intent intent = new Intent(getActivity(), AccountActivity.class);
                             intent.putExtra("accountId", account.getAccountId());
+                            intent.putExtra("accountName", account.getAccountName());
                             startActivity(intent);
                         }
                         if(position == 1){//删除
@@ -89,6 +91,11 @@ public class RecordFragment extends Fragment implements RecordContract.RecordVie
                                         }
                                     })
                                     .show();
+                        }
+                        if(position == 2){//查看人员
+                            Intent intent = new Intent(getActivity(), AccountUserActivity.class);
+                            intent.putExtra("accountId", account.getAccountId());
+                            startActivity(intent);
                         }
                     }
                 })

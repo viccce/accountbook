@@ -1,5 +1,9 @@
 package com.account.accountapplication.utils;
 
+import com.account.accountapplication.data.record.Account;
+
+import java.util.List;
+
 public class DataManager {
 
     private static volatile DataManager dataManager;
@@ -19,6 +23,8 @@ public class DataManager {
 
     private Long accountId;
 
+    private List<Account> accountList;
+
     public Long getUserId() {
         return userId;
     }
@@ -33,5 +39,13 @@ public class DataManager {
 
     public void setAccountId(Long accountId) {
         this.accountId = accountId;
+    }
+
+    public List<Account> getAccountList() {
+        return accountList;
+    }
+
+    public void setAccountList(List<Account> accountList) {
+        this.accountList = accountList;
     }
 }

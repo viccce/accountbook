@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.account.accountapplication.R;
+import com.account.accountapplication.addaccountline.AddAccountLineActivity;
 import com.account.accountapplication.chat.chatFragment;
 import com.account.accountapplication.edituser.EditUserActivity;
 import com.account.accountapplication.login.LoginActivity;
@@ -90,6 +91,9 @@ public class RecordActivity extends AppCompatActivity {
                                     flag = !flag;
                                 }
                             });
+                            Intent intent = new Intent();
+                            intent.setClass(RecordActivity.this, AddAccountLineActivity.class);
+                            startActivity(intent);
                         }
                         return false;
                     }

@@ -36,6 +36,7 @@ public class RecordPresenterImpl implements RecordContract.RecordPresenter, Acco
 
     @Override
     public void getAccountInfoListSuccess(List<Account> list) {
+        dataManager.setAccountList(list);
         recordView.showAccountInfoList(list);
     }
 

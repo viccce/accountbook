@@ -3,5 +3,20 @@
     <string-array name="menu_values">
         <item>详情</item>
         <item>删除</item>
+        <item>共享人</item>
+    </string-array>
+
+    <string-array name="account_type_values">
+        <item>交通出行</item>
+        <item>餐饮美食</item>
+        <item>投资理财</item>
+        <item>休闲生活</item>
+    </string-array>
+
+    <string-array name="pay_type_values">
+        <item>现金</item>
+        <item>支付宝</item>
+        <item>微信</item>
+        <item>信用卡</item>
     </string-array>
 </resources>

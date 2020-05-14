@@ -11,6 +11,7 @@ public class AccountLine {
     private Date changeTime;
     private Long changeUserId;
     private String payType;
+    private String changeUserName;
 
     public Long getAccountLineId() {
         return accountLineId;
@@ -66,5 +67,13 @@ public class AccountLine {
 
     public void setPayType(String payType) {
         this.payType = payType;
+    }
+
+    public String getChangeUserName() {
+        return changeUserName;
+    }
+
+    public void setChangeUserName(String changeUserName) {
+        this.changeUserName = changeUserName;
     }
 }
