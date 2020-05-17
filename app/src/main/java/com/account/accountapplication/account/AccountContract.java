@@ -13,6 +13,6 @@ public interface AccountContract {
     
     interface AccountPresenter{
 
-        void getAccountLine(Long accountId);
+        void getAccountLine(Long accountId, String accountType);
     }
 }

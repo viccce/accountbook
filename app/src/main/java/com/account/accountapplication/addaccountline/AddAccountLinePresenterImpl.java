@@ -30,6 +30,10 @@ public class AddAccountLinePresenterImpl implements AddAccountLineContract.AddAc
         line.setChangeUserId(dataManager.getUserId());
         BigDecimal money = new BigDecimal(changeMoney);
         money = money.multiply(new BigDecimal("100")).setScale(0, BigDecimal.ROUND_HALF_UP);
+        String[] split = accountType.split("-");
+        if ("支出".equals(split[0])) {
+            money = money.multiply(new BigDecimal("-1"));
+        }
         line.setChangeMoney(money.longValue());
         addAccountLineModel.saveAccountLine(line, this);
     }

@@ -34,9 +34,13 @@ public class AccountUserModelImpl implements AccountUserModel {
             @Override
             public void run() {
                 user.setActionType("delete");
+                Map<String, Object> map = new HashMap<>();
+                map.put("accountId", user.getAccountId());
+                map.put("userId", user.getId());
+                map.put("actionType", user.getActionType());
                 String url = Constant.URL_ACCOUNT_USER_MODIFY;
                 Gson gson = new Gson();
-                String body = gson.toJson(user);
+                String body = gson.toJson(map);
                 volleyUtil.httpPostRequest(url, new HashMap<String, String>(), body, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -65,8 +69,12 @@ public class AccountUserModelImpl implements AccountUserModel {
             public void run() {
                 user.setActionType("create");
                 String url = Constant.URL_ACCOUNT_USER_MODIFY;
+                Map<String, Object> map = new HashMap<>();
+                map.put("accountId", user.getAccountId());
+                map.put("userId", user.getId());
+                map.put("actionType", user.getActionType());
                 Gson gson = new Gson();
-                String body = gson.toJson(user);
+                String body = gson.toJson(map);
                 volleyUtil.httpPostRequest(url, new HashMap<String, String>(), body, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -107,7 +115,9 @@ public class AccountUserModelImpl implements AccountUserModel {
                             List<User> list = new ArrayList<>();
                             JsonArray users = res.get("result").getAsJsonArray();
                             for (JsonElement user : users) {
-                                list.add(gson.fromJson(user, User.class));
+                                User u = gson.fromJson(user, User.class);
+                                u.setId(u.getUserId());
+                                list.add(u);
                             }
                             listener.getAccountUserListSuccess(list);
                         }else{

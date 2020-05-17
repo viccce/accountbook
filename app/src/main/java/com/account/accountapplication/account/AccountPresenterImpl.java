@@ -18,13 +18,14 @@ public class AccountPresenterImpl implements AccountContract.AccountPresenter, A
     }
 
     @Override
-    public void getAccountLine(Long accountId) {
+    public void getAccountLine(Long accountId, String accountType) {
         if(accountId == null){
             accountView.onError("ERROR");
             return;
         }
         Account account = new Account();
         account.setAccountId(accountId);
+        account.setAccountType(accountType);
         accountModel.getAccountLine(account, this);
     }
 

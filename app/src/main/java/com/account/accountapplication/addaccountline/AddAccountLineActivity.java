@@ -17,6 +17,10 @@ import com.xuexiang.xui.widget.picker.widget.OptionsPickerView;
 import com.xuexiang.xui.widget.picker.widget.builder.OptionsPickerBuilder;
 import com.xuexiang.xui.widget.picker.widget.listener.OnOptionsSelectListener;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import androidx.activity.ComponentActivity;
 import androidx.annotation.Nullable;
 
@@ -39,6 +43,8 @@ public class AddAccountLineActivity extends ComponentActivity implements AddAcco
     private TextView payType;
     private EditText changeMoney;
     private String[] accountList;
+    private List<String> accountTypeList;
+    private List<List<String>> accountTypeDetailList;
     private String[] pickTypeList;
     private String[] payTypeList;
     long accountId;
@@ -59,16 +65,28 @@ public class AddAccountLineActivity extends ComponentActivity implements AddAcco
         payType = findViewById(R.id.pay_type);
         changeMoney = findViewById(R.id.change_money);
 
-        if(accountId != -1L){
+        if (accountId != -1L) {
             accountList = new String[]{accountName};
             account.setText(accountName);
-        }else{
+        } else {
             isFastAdd = true;
             accountList = getAccountNameList();
         }
 
 
         pickTypeList = getResources().getStringArray(R.array.account_type_values);
+        accountTypeList = new ArrayList<>();
+        accountTypeDetailList = new ArrayList<>();
+        for (int index = 0; index < pickTypeList.length; index++) {
+            accountTypeList.add(pickTypeList[index]);
+            if ("收入".equals(pickTypeList[index])) {
+                List<String> detail = Arrays.asList(getResources().getStringArray(R.array.account_type_in_values));
+                accountTypeDetailList.add(detail);
+            } else if ("支出".equals(pickTypeList[index])) {
+                List<String> detail = Arrays.asList(getResources().getStringArray(R.array.account_type_out_values));
+                accountTypeDetailList.add(detail);
+            }
+        }
         payTypeList = getResources().getStringArray(R.array.pay_type_values);
 
         TitleBar titleBar = findViewById(R.id.add_account_line_title);
@@ -105,14 +123,15 @@ public class AddAccountLineActivity extends ComponentActivity implements AddAcco
                 OptionsPickerView pvOptions = new OptionsPickerBuilder(v.getContext(), new OnOptionsSelectListener() {
                     @Override
                     public boolean onOptionsSelect(View v, int options1, int options2, int options3) {
-                        accountType.setText(pickTypeList[options1]);
+                        String text = accountTypeList.get(options1) + "-" + accountTypeDetailList.get(options1).get(options2);
+                        accountType.setText(text);
                         return false;
                     }
                 })
                         .setTitleText(getString(R.string.account_type))
 //                        .setSelectOptions(sexSelectOption)
                         .build();
-                pvOptions.setPicker(pickTypeList);
+                pvOptions.setPicker(accountTypeList, accountTypeDetailList);
                 pvOptions.show();
             }
         });
@@ -143,18 +162,18 @@ public class AddAccountLineActivity extends ComponentActivity implements AddAcco
         });
     }
 
-    void saveAccountLine(){
+    void saveAccountLine() {
         String at = accountType.getText().toString();
         String pt = payType.getText().toString();
         String money = changeMoney.getText().toString();
         addAccountLinePresenter.saveAccountLine(accountId, at, money, pt);
     }
 
-    String[] getAccountNameList(){
+    String[] getAccountNameList() {
         return addAccountLinePresenter.getAccountNameList();
     }
 
-    Long getAccountIdByName(String name){
+    Long getAccountIdByName(String name) {
         return addAccountLinePresenter.getAccountIdByName(name);
     }
 
@@ -165,12 +184,12 @@ public class AddAccountLineActivity extends ComponentActivity implements AddAcco
 
     @Override
     public void saveSuccess() {
-        if(isFastAdd){
+        if (isFastAdd) {
             RecordActivity recordActivity = RecordActivity.getInstance();
             recordActivity.refreshRecord();
-        }else{
+        } else {
             AccountActivity accountActivity = AccountActivity.getInstance();
-            accountActivity.getAccountLine(accountId);
+            accountActivity.getAccountLine(accountId, "");
         }
         finish();
     }

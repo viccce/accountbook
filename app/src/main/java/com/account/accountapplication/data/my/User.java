@@ -31,6 +31,8 @@ public class User {
 
     private Long accountId;
 
+    private Long userId;
+
     public Long getId() {
         return id;
     }
@@ -101,5 +103,13 @@ public class User {
 
     public void setAccountId(Long accountId) {
         this.accountId = accountId;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }
